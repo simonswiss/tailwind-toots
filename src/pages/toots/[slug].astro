@@ -1,0 +1,34 @@
+---
+import { getEntry, getCollection } from 'astro:content'
+
+import Layout from '../../layouts/Layout.astro'
+import YouTubeVideoEmbed from '../../components/YouTubeVideoEmbed.astro'
+
+const { slug } = Astro.params
+
+export async function getStaticPaths() {
+  const toots = await getCollection('toots')
+  return toots.map((toot) => ({ params: { slug: toot.slug } }))
+}
+
+const toot = await getEntry('toots', slug)
+if (!toot) throw new Error(`No toot found with the ${slug} slug`)
+const { Content } = await toot.render()
+---
+
+<Layout title={toot.data.title}>
+  <main>
+    <div class="container py-20">
+      <div>
+        <a href="/" class="hover:underline">&larr; back to homepage</a>
+      </div>
+      <h1 class="mt-8 text-3xl sm:text-5xl md:text-5xl font-black">{toot.data.title}</h1>
+      <div class="mt-8 lg:mt-12 grid gap-8 lg:gap-12 lg:grid-cols-3">
+        <YouTubeVideoEmbed videoId={toot.data.videoId} />
+        <div class="md:col-span-2 prose prose-invert prose-lg lg:prose-xl">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
