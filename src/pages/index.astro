@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import YouTubeVideoEmbed from '../components/YouTubeVideoEmbed.astro'
+import CTA from '../components/CTA.astro'
 import { getCollection } from 'astro:content'
 
 const toots = await getCollection('toots')
@@ -8,7 +9,7 @@ const toots = await getCollection('toots')
 
 <Layout title="Tailwind Toots">
   <main>
-    <div class="container py-20">
+    <div class="container pt-20">
       <h1 class="text-4xl sm:text-5xl md:text-7xl font-black">Tailwind Toots</h1>
       <p class="text-xl mt-4 text-white/60 max-w-sm text-pretty">
         Tailwind CSS mini-video tutorials, made by <a
@@ -32,4 +33,7 @@ const toots = await getCollection('toots')
       </ul>
     </div>
   </main>
+  <footer class="container py-6">
+    <CTA />
+  </footer>
 </Layout>

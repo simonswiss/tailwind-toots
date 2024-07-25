@@ -3,6 +3,7 @@ import { getEntry, getCollection } from 'astro:content'
 
 import Layout from '../../layouts/Layout.astro'
 import YouTubeVideoEmbed from '../../components/YouTubeVideoEmbed.astro'
+import CTA from '../../components/CTA.astro'
 
 const { slug } = Astro.params
 
@@ -18,7 +19,7 @@ const { Content } = await toot.render()
 
 <Layout title={toot.data.title}>
   <main>
-    <div class="container py-20">
+    <div class="container pt-20 pb-8">
       <div>
         <a href="/" class="hover:underline">&larr; back to homepage</a>
       </div>
@@ -27,6 +28,7 @@ const { Content } = await toot.render()
         <YouTubeVideoEmbed videoId={toot.data.videoId} />
         <div class="md:col-span-2 prose prose-invert prose-lg lg:prose-xl">
           <Content />
+          <CTA />
         </div>
       </div>
     </div>
