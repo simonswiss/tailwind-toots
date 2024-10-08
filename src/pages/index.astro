@@ -5,6 +5,8 @@ import CTA from '../components/CTA.astro'
 import { getCollection } from 'astro:content'
 
 const toots = await getCollection('toots')
+// sort with localCompare
+const sortedToots = toots.sort((a, b) => b.data.date.localeCompare(a.data.date))
 ---
 
 <Layout title="Tailwind Toots">
@@ -19,7 +21,7 @@ const toots = await getCollection('toots')
       </p>
       <ul role="list" class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
-          toots.map((toot) => (
+          sortedToots.map((toot) => (
             <li class="">
               <h2 class="text-2xl md:text-xl font-medium">
                 <a href={`/toots/${toot.slug}`}>{toot.data.title}</a>

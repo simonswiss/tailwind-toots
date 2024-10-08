@@ -4,6 +4,7 @@ const tootsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     videoId: z.string(),
+    date: z.string(),
   }),
 })
 

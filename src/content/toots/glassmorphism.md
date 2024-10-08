@@ -1,6 +1,7 @@
 ---
 title: Glassmorphism
 videoId: tak8EBvp_Ck
+date: '2024-10-07'
 ---
 
 🤌 Glassmorphism with Tailwind CSS
